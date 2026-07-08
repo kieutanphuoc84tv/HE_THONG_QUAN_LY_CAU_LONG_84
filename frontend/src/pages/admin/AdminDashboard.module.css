@@ -1,0 +1,248 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+.page { 
+  display: flex; 
+  flex-direction: column; 
+  gap: 24px; 
+  font-family: "Inter", sans-serif;
+  background: transparent;
+  padding: 0;
+  min-height: calc(100vh - 64px);
+  position: relative;
+  overflow: hidden;
+}
+
+/* ── Mesh Background ── */
+.meshBackground {
+  position: absolute;
+  top: -20%;
+  left: -20%;
+  right: -20%;
+  bottom: -20%;
+  background-color: #f8fafc;
+  background-image: 
+    radial-gradient(at 0% 0%, hsla(160, 100%, 85%, 0.5) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, hsla(210, 100%, 85%, 0.4) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, hsla(280, 100%, 85%, 0.2) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, hsla(40, 100%, 85%, 0.4) 0px, transparent 50%);
+  z-index: 0;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.contentWrapper {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* ── Liquid Glass Base ── */
+.glassPanel {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 20px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 32px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+/* ── Welcome banner ── */
+.welcomeBanner {
+  padding: 24px 32px;
+  position: relative; 
+}
+
+.welcomeContent { position: relative; z-index: 1; }
+.welcomeTitle { 
+  font-size: 26px; 
+  font-weight: 800; 
+  color: #0f172a; 
+  margin: 0 0 4px; 
+  letter-spacing: -0.02em;
+}
+.welcomeTitle span { 
+  color: #10b981;
+}
+.welcomeDate { 
+  font-size: 14px; 
+  color: #64748b; 
+  font-weight: 500; 
+}
+
+/* ── Stats grid ── */
+.statsGrid { 
+  display: grid; 
+  grid-template-columns: repeat(4, 1fr); 
+  gap: 20px; 
+}
+
+.statCard {
+  padding: 24px; 
+  position: relative; 
+}
+
+.statCardTop { 
+  display: flex; 
+  align-items: flex-start; 
+  justify-content: space-between; 
+  margin-bottom: 20px; 
+}
+
+.statIconWrap {
+  width: 44px; 
+  height: 44px; 
+  border-radius: 12px;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.statArrow {
+  color: #94a3b8;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.statValue { 
+  font-size: 32px; 
+  font-weight: 900; 
+  color: #0f172a; 
+  line-height: 1.1; 
+  margin-bottom: 4px;
+  letter-spacing: -0.03em;
+}
+
+.statLabel { 
+  font-size: 13px; 
+  font-weight: 700; 
+  color: #64748b; 
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.statChange { 
+  font-size: 12px; 
+  font-weight: 600; 
+  color: #94a3b8; 
+  margin-top: 8px; 
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.statHighlight {
+  position: absolute; 
+  top: 0; 
+  left: 0; 
+  right: 0;
+  height: 4px; 
+  border-radius: 20px 20px 0 0;
+  opacity: 0.8;
+}
+
+/* ── Period Buttons ── */
+.periodBtn {
+  padding: 8px 16px; 
+  border-radius: 10px; 
+  border: none;
+  font-size: 13px; 
+  font-weight: 700; 
+  cursor: pointer;
+  background: transparent; 
+  color: #64748b;
+  font-family: "Inter", sans-serif; 
+  transition: all 0.2s;
+}
+
+.periodBtn:hover {
+  color: #10b981;
+}
+
+.periodActive { 
+  background: #ffffff; 
+  color: #10b981; 
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255,255,255,1);
+}
+
+/* ── Tables and Lists ── */
+.tableHeader {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  padding: 20px 24px; 
+  border-bottom: 1px solid rgba(0,0,0,0.04);
+  background: rgba(255,255,255,0.4);
+}
+
+.tableTitle {
+  margin: 0; 
+  font-size: 16px; 
+  font-weight: 900; 
+  color: #0f172a;
+}
+.tableSub {
+  margin: 3px 0 0; 
+  font-size: 12px; 
+  color: #64748b; 
+  font-weight: 500;
+}
+
+.table { 
+  width: 100%; 
+  border-collapse: collapse; 
+}
+
+.table th {
+  font-size: 11px; 
+  font-weight: 800; 
+  letter-spacing: .06em;
+  color: #64748b; 
+  padding: 14px 20px; 
+  text-align: left;
+  border-bottom: 1px solid rgba(0,0,0,0.04); 
+  background: rgba(248, 250, 252, 0.4);
+  text-transform: uppercase;
+}
+
+.table td {
+  padding: 16px 20px; 
+  font-size: 13px; 
+  color: #334155;
+  border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.table tr:last-child td { 
+  border-bottom: none; 
+}
+
+/* Court status items */
+.courtRow {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between;
+  padding: 14px 16px; 
+  border-radius: 12px; 
+  transition: background 0.2s;
+  cursor: default;
+}
+
+.courtRow:hover { 
+  background: rgba(255,255,255,0.5);
+}
+
+@media (max-width: 1200px) {
+  .statsGrid { 
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}

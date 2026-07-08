@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>ERD - Cầu Lông 84</title>
+<style>
+  body { margin: 0; background: #f0f4f8; font-family: Arial, sans-serif; padding: 20px; }
+  h1 { text-align: center; font-size: 20px; font-weight: 800; color: #1a1a2e; margin-bottom: 4px; }
+  .sub { text-align: center; font-size: 12px; color: #666; margin-bottom: 16px; }
+  .wrap { overflow-x: auto; }
+  svg { display: block; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 16px rgba(0,0,0,.12); }
+  .legend { display: flex; gap: 20px; justify-content: center; margin-top: 14px; font-size: 12px; color: #333; }
+  .legend b { font-size: 13px; }
+</style>
+</head>
+<body>
+<h1>Mô hình dữ liệu hệ thống quản lý sân cầu lông 84</h1>
+<p class="sub">ERD / Lược đồ quan hệ dữ liệu có ID, PK, FK và kiểu dữ liệu</p>
+<div class="wrap">
+<svg width="1180" height="1010" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <style>
+    .th { font: bold 12px Arial; fill: white; }
+    .pk { font: bold 11px Arial; fill: #c53030; }
+    .fk { font: bold 11px Arial; fill: #c05621; }
+    .fd { font: 11px Arial; fill: #1a202c; }
+    .rel { font: bold 12px Arial; fill: #2d3748; }
+    .conn { stroke: #2d3748; stroke-width: 1.5; fill: none; }
+    .tbl { fill: white; stroke: #2d3748; stroke-width: 1.5; }
+    .hdr { fill: #2b6cb0; }
+    .hr { stroke: #cbd5e0; stroke-width: 1; }
+  </style>
+</defs>
+
+<script type="text/javascript">
+/* Tables drawn as SVG groups */
+</script>
+
+<!-- ═══════════════ CONNECTIONS (draw first so tables appear on top) ═══════════════ -->
+
+<!-- NGUOIDUNG → KHACHHANG (1-1) vertical -->
+<polyline class="conn" points="140,192 140,250"/>
+<text class="rel" x="145" y="208">1</text>
+<text class="rel" x="145" y="244">1</text>
+
+<!-- NGUOIDUNG → NHANVIEN (1-1) via left -->
+<polyline class="conn" points="30,111 8,111 8,621 30,621"/>
+<text class="rel" x="10" y="108">1</text>
+<text class="rel" x="10" y="618">1</text>
+
+<!-- KHACHHANG → LICHDATSAN (1-N) -->
+<polyline class="conn" points="250,355 310,355"/>
+<text class="rel" x="255" y="350">1</text>
+<text class="rel" x="295" y="350">N</text>
+
+<!-- SAN → LICHDATSAN (1-N) -->
+<polyline class="conn" points="590,192 590,220 420,220 420,250"/>
+<text class="rel" x="594" y="208">1</text>
+<text class="rel" x="422" y="244">N</text>
+
+<!-- LICHDATSAN → HOADON (1-1) -->
+<polyline class="conn" points="530,362 560,362 560,341 590,341"/>
+<text class="rel" x="534" y="358">1</text>
+<text class="rel" x="582" y="337">1</text>
+
+<!-- NHANVIEN → HOADON (1-N) via top -->
+<polyline class="conn" points="250,621 275,621 275,240 700,240 700,250"/>
+<text class="rel" x="255" y="617">1</text>
+<text class="rel" x="696" y="246">N</text>
+
+<!-- HOADON → THANHTOAN (1-1) -->
+<polyline class="conn" points="810,341 900,341"/>
+<text class="rel" x="818" y="337">1</text>
+<text class="rel" x="888" y="337">1</text>
+
+<!-- HOADON → CHITIETHOADON (1-N) vertical -->
+<polyline class="conn" points="700,433 700,510"/>
+<text class="rel" x="704" y="449">1</text>
+<text class="rel" x="704" y="504">N</text>
+
+<!-- DICHVU → CHITIETHOADON (1-N) -->
+<polyline class="conn" points="900,580 855,580 855,601 810,601"/>
+<text class="rel" x="862" y="577">1</text>
+<text class="rel" x="816" y="597">N</text>
+
+<!-- KHACHHANG → DANGKYGIAIDAU (1-N) via left -->
+<polyline class="conn" points="30,454 8,454 8,871 310,871"/>
+<text class="rel" x="10" y="450">1</text>
+<text class="rel" x="302" y="868">N</text>
+
+<!-- GIAIDAU → DANGKYGIAIDAU (1-N) vertical -->
+<polyline class="conn" points="420,743 420,790"/>
+<text class="rel" x="424" y="759">1</text>
+<text class="rel" x="424" y="784">N</text>
+
+<!-- ═══════════════ TABLE: NGUOIDUNG  x=30 y=30 w=220 h=162 ═══════════════ -->
+<g id="NGUOIDUNG">
+  <rect class="tbl" x="30" y="30" width="220" height="162" rx="2"/>
+  <rect class="hdr" x="30" y="30" width="220" height="28" rx="2"/>
+  <text class="th" x="140" y="49" text-anchor="middle">NGUOIDUNG</text>
+  <line class="hr" x1="30" y1="58" x2="250" y2="58"/>
+  <text class="pk" x="38" y="73">PK  ID_NguoiDung : VARCHAR(10)</text>
+  <line class="hr" x1="30" y1="79" x2="250" y2="79"/>
+  <text class="fd" x="38" y="94">TenDangNhap : VARCHAR(50)</text>
+  <text class="fd" x="38" y="115">MatKhau : VARCHAR(255)</text>
+  <text class="fd" x="38" y="136">VaiTro : VARCHAR(30)</text>
+  <text class="fd" x="38" y="157">TrangThai : VARCHAR(20)</text>
+  <text class="fd" x="38" y="178">NgayTao : DATE</text>
+</g>
+
+<!-- ═══════════════ TABLE: SAN  x=480 y=30 w=220 h=162 ═══════════════ -->
+<g id="SAN">
+  <rect class="tbl" x="480" y="30" width="220" height="162" rx="2"/>
+  <rect class="hdr" x="480" y="30" width="220" height="28" rx="2"/>
+  <text class="th" x="590" y="49" text-anchor="middle">SAN</text>
+  <line class="hr" x1="480" y1="58" x2="700" y2="58"/>
+  <text class="pk" x="488" y="73">PK  ID_San : VARCHAR(10)</text>
+  <line class="hr" x1="480" y1="79" x2="700" y2="79"/>
+  <text class="fd" x="488" y="94">TenSan : VARCHAR(50)</text>
+  <text class="fd" x="488" y="115">LoaiSan : VARCHAR(50)</text>
+  <text class="fd" x="488" y="136">TrangThai : VARCHAR(30)</text>
+  <text class="fd" x="488" y="157">GiaTheoGio : DECIMAL(12,2)</text>
+  <text class="fd" x="488" y="178">GhiChu : VARCHAR(255)</text>
+</g>
+
+<!-- ═══════════════ TABLE: KHACHHANG  x=30 y=250 w=220 h=204 ═══════════════ -->
+<g id="KHACHHANG">
+  <rect class="tbl" x="30" y="250" width="220" height="204" rx="2"/>
+  <rect class="hdr" x="30" y="250" width="220" height="28" rx="2"/>
+  <text class="th" x="140" y="269" text-anchor="middle">KHACHHANG</text>
+  <line class="hr" x1="30" y1="278" x2="250" y2="278"/>
+  <text class="pk" x="38" y="293">PK  ID_KhachHang : VARCHAR(10)</text>
+  <line class="hr" x1="30" y1="299" x2="250" y2="299"/>
+  <text class="fk" x="38" y="314">FK  ID_NguoiDung : VARCHAR(10)</text>
+  <text class="fd" x="38" y="335">HoTen : VARCHAR(100)</text>
+  <text class="fd" x="38" y="356">SoDienThoai : VARCHAR(15)</text>
+  <text class="fd" x="38" y="377">Email : VARCHAR(100)</text>
+  <text class="fd" x="38" y="398">DiaChi : VARCHAR(200)</text>
+  <text class="fd" x="38" y="419">LoaiKhachHang : VARCHAR(30)</text>
+  <text class="fd" x="38" y="440">DiemTichLuy : INT</text>
+</g>
+
+<!-- ═══════════════ TABLE: NHANVIEN  x=30 y=530 w=220 h=183 ═══════════════ -->
+<g id="NHANVIEN">
+  <rect class="tbl" x="30" y="530" width="220" height="183" rx="2"/>
+  <rect class="hdr" x="30" y="530" width="220" height="28" rx="2"/>
+  <text class="th" x="140" y="549" text-anchor="middle">NHANVIEN</text>
+  <line class="hr" x1="30" y1="558" x2="250" y2="558"/>
+  <text class="pk" x="38" y="573">PK  ID_NhanVien : VARCHAR(10)</text>
+  <line class="hr" x1="30" y1="579" x2="250" y2="579"/>
+  <text class="fk" x="38" y="594">FK  ID_NguoiDung : VARCHAR(10)</text>
+  <text class="fd" x="38" y="615">HoTen : VARCHAR(100)</text>
+  <text class="fd" x="38" y="636">SoDienThoai : VARCHAR(15)</text>
+  <text class="fd" x="38" y="657">Email : VARCHAR(100)</text>
+  <text class="fd" x="38" y="678">ChucVu : VARCHAR(50)</text>
+  <text class="fd" x="38" y="699">NgayVaoLam : DATE</text>
+</g>
+
+<!-- ═══════════════ TABLE: LICHDATSAN  x=310 y=250 w=220 h=225 ═══════════════ -->
+<g id="LICHDATSAN">
+  <rect class="tbl" x="310" y="250" width="220" height="225" rx="2"/>
+  <rect class="hdr" x="310" y="250" width="220" height="28" rx="2"/>
+  <text class="th" x="420" y="269" text-anchor="middle">LICHDATSAN</text>
+  <line class="hr" x1="310" y1="278" x2="530" y2="278"/>
+  <text class="pk" x="318" y="293">PK  ID_LichDat : VARCHAR(10)</text>
+  <line class="hr" x1="310" y1="299" x2="530" y2="299"/>
+  <text class="fk" x="318" y="314">FK  ID_KhachHang : VARCHAR(10)</text>
+  <text class="fk" x="318" y="335">FK  ID_San : VARCHAR(10)</text>
+  <text class="fd" x="318" y="356">NgayDat : DATE</text>
+  <text class="fd" x="318" y="377">GioBatDau : TIME</text>
+  <text class="fd" x="318" y="398">GioKetThuc : TIME</text>
+  <text class="fd" x="318" y="419">SoGio : DECIMAL(4,2)</text>
+  <text class="fd" x="318" y="440">TrangThai : VARCHAR(30)</text>
+  <text class="fd" x="318" y="461">GhiChu : VARCHAR(255)</text>
+</g>
+
+<!-- ═══════════════ TABLE: HOADON  x=590 y=250 w=220 h=183 ═══════════════ -->
+<g id="HOADON">
+  <rect class="tbl" x="590" y="250" width="220" height="183" rx="2"/>
+  <rect class="hdr" x="590" y="250" width="220" height="28" rx="2"/>
+  <text class="th" x="700" y="269" text-anchor="middle">HOADON</text>
+  <line class="hr" x1="590" y1="278" x2="810" y2="278"/>
+  <text class="pk" x="598" y="293">PK  ID_HoaDon : VARCHAR(10)</text>
+  <line class="hr" x1="590" y1="299" x2="810" y2="299"/>
+  <text class="fk" x="598" y="314">FK  ID_LichDat : VARCHAR(10)</text>
+  <text class="fk" x="598" y="335">FK  ID_NhanVien : VARCHAR(10)</text>
+  <text class="fd" x="598" y="356">NgayLap : DATE</text>
+  <text class="fd" x="598" y="377">TienSan : DECIMAL(12,2)</text>
+  <text class="fd" x="598" y="398">TongTien : DECIMAL(12,2)</text>
+  <text class="fd" x="598" y="419">TrangThai : VARCHAR(30)</text>
+</g>
+
+<!-- ═══════════════ TABLE: THANHTOAN  x=870 y=250 w=220 h=162 ═══════════════ -->
+<g id="THANHTOAN">
+  <rect class="tbl" x="870" y="250" width="220" height="162" rx="2"/>
+  <rect class="hdr" x="870" y="250" width="220" height="28" rx="2"/>
+  <text class="th" x="980" y="269" text-anchor="middle">THANHTOAN</text>
+  <line class="hr" x1="870" y1="278" x2="1090" y2="278"/>
+  <text class="pk" x="878" y="293">PK  ID_ThanhToan : VARCHAR(10)</text>
+  <line class="hr" x1="870" y1="299" x2="1090" y2="299"/>
+  <text class="fk" x="878" y="314">FK  ID_HoaDon : VARCHAR(10)</text>
+  <text class="fd" x="878" y="335">HinhThucTT : VARCHAR(50)</text>
+  <text class="fd" x="878" y="356">NgayThanhToan : DATE</text>
+  <text class="fd" x="878" y="377">SoTien : DECIMAL(12,2)</text>
+  <text class="fd" x="878" y="398">TrangThai : VARCHAR(30)</text>
+</g>
+
+<!-- ═══════════════ TABLE: CHITIETHOADON  x=590 y=510 w=220 h=183 ═══════════════ -->
+<g id="CHITIETHOADON">
+  <rect class="tbl" x="590" y="510" width="220" height="183" rx="2"/>
+  <rect class="hdr" x="590" y="510" width="220" height="28" rx="2"/>
+  <text class="th" x="700" y="529" text-anchor="middle">CHITIETHOADON</text>
+  <line class="hr" x1="590" y1="538" x2="810" y2="538"/>
+  <text class="pk" x="598" y="553">PK  ID_ChiTietHD : VARCHAR(10)</text>
+  <line class="hr" x1="590" y1="559" x2="810" y2="559"/>
+  <text class="fk" x="598" y="574">FK  ID_HoaDon : VARCHAR(10)</text>
+  <text class="fk" x="598" y="595">FK  ID_DichVu : VARCHAR(10)</text>
+  <text class="fd" x="598" y="616">SoLuong : INT</text>
+  <text class="fd" x="598" y="637">DonGia : DECIMAL(12,2)</text>
+  <text class="fd" x="598" y="658">ThanhTien : DECIMAL(12,2)</text>
+  <text class="fd" x="598" y="679">GhiChu : VARCHAR(255)</text>
+</g>
+
+<!-- ═══════════════ TABLE: DICHVU  x=870 y=510 w=220 h=141 ═══════════════ -->
+<g id="DICHVU">
+  <rect class="tbl" x="870" y="510" width="220" height="141" rx="2"/>
+  <rect class="hdr" x="870" y="510" width="220" height="28" rx="2"/>
+  <text class="th" x="980" y="529" text-anchor="middle">DICHVU</text>
+  <line class="hr" x1="870" y1="538" x2="1090" y2="538"/>
+  <text class="pk" x="878" y="553">PK  ID_DichVu : VARCHAR(10)</text>
+  <line class="hr" x1="870" y1="559" x2="1090" y2="559"/>
+  <text class="fd" x="878" y="574">TenDichVu : VARCHAR(100)</text>
+  <text class="fd" x="878" y="595">DonGia : DECIMAL(12,2)</text>
+  <text class="fd" x="878" y="616">DonViTinh : VARCHAR(30)</text>
+  <text class="fd" x="878" y="637">TrangThai : VARCHAR(30)</text>
+</g>
+
+<!-- ═══════════════ TABLE: GIAIDAU  x=310 y=560 w=220 h=183 ═══════════════ -->
+<g id="GIAIDAU">
+  <rect class="tbl" x="310" y="560" width="220" height="183" rx="2"/>
+  <rect class="hdr" x="310" y="560" width="220" height="28" rx="2"/>
+  <text class="th" x="420" y="579" text-anchor="middle">GIAIDAU</text>
+  <line class="hr" x1="310" y1="588" x2="530" y2="588"/>
+  <text class="pk" x="318" y="603">PK  ID_GiaiDau : VARCHAR(10)</text>
+  <line class="hr" x1="310" y1="609" x2="530" y2="609"/>
+  <text class="fd" x="318" y="624">TenGiaiDau : VARCHAR(100)</text>
+  <text class="fd" x="318" y="645">NgayBatDau : DATE</text>
+  <text class="fd" x="318" y="666">NgayKetThuc : DATE</text>
+  <text class="fd" x="318" y="687">DiaDiem : VARCHAR(200)</text>
+  <text class="fd" x="318" y="708">LePhi : DECIMAL(12,2)</text>
+  <text class="fd" x="318" y="729">TrangThai : VARCHAR(30)</text>
+</g>
+
+<!-- ═══════════════ TABLE: DANGKYGIAIDAU  x=310 y=790 w=220 h=162 ═══════════════ -->
+<g id="DANGKYGIAIDAU">
+  <rect class="tbl" x="310" y="790" width="220" height="162" rx="2"/>
+  <rect class="hdr" x="310" y="790" width="220" height="28" rx="2"/>
+  <text class="th" x="420" y="809" text-anchor="middle">DANGKYGIAIDAU</text>
+  <line class="hr" x1="310" y1="818" x2="530" y2="818"/>
+  <text class="pk" x="318" y="833">PK  ID_DangKyGiaiDau : VARCHAR(10)</text>
+  <line class="hr" x1="310" y1="839" x2="530" y2="839"/>
+  <text class="fk" x="318" y="854">FK  ID_KhachHang : VARCHAR(10)</text>
+  <text class="fk" x="318" y="875">FK  ID_GiaiDau : VARCHAR(10)</text>
+  <text class="fd" x="318" y="896">NgayDangKy : DATE</text>
+  <text class="fd" x="318" y="917">TrangThai : VARCHAR(30)</text>
+  <text class="fd" x="318" y="938">GhiChu : VARCHAR(255)</text>
+</g>
+
+<!-- ═══════════════ LEGEND ═══════════════ -->
+<rect x="30" y="960" width="620" height="36" rx="4" fill="#edf2f7" stroke="#cbd5e0" stroke-width="1"/>
+<text font-size="11" font-family="Arial" x="44" y="978" fill="#2d3748"><tspan font-weight="bold">Chú thích: </tspan>
+  <tspan fill="#c53030" font-weight="bold">PK</tspan> = Khóa chính    
+  <tspan fill="#c05621" font-weight="bold">FK</tspan> = Khóa ngoại    
+  VARCHAR/DATE/TIME/DECIMAL/INT = Kiểu dữ liệu    
+  <tspan font-weight="bold">1 / N</tspan> = Quan hệ
+</text>
+</svg>
+</div>
+</body>
+</html>

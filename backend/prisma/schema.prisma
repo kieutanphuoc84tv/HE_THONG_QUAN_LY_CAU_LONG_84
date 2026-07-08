@@ -1,0 +1,292 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model NguoiDung {
+  id_nguoidung    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tendangnhap     String    @unique @db.VarChar(50)
+  hoten           String?   @db.VarChar(100)
+  email           String?   @unique @db.VarChar(100)
+  matkhau         String    @db.VarChar(255)
+  sdt             String?   @map("SDT") @db.VarChar(15)
+  vaitro          String?   @db.VarChar(20)
+  oauth_provider  String?   @db.VarChar(20)
+  oauth_id        String?   @unique @db.VarChar(100)
+  avatar          String?
+  ngaytao         DateTime? @default(now()) @db.Timestamp(6)
+
+  sanQuanLy       San[]           @relation("SanQuanLy")
+  datSans         DatSan[]
+  thanhVienClb    ThanhVienClb?
+  lichTapHlv      LichTapLuyen[]  @relation("HlvLichTap")
+  giaiDauToChuc   GiaiDau[]       @relation("GiaiDauToChuc")
+  dangKyGiai      DkGiaiDau[]
+  thongKeTao      ThongKe[]
+  thongBaos       ThongBao[]
+  donThues        DonThue[]
+  tinNhanGui      TinNhan[]       @relation("TinNhanNguoiGui")
+  tinNhanNhan     TinNhan[]       @relation("TinNhanNguoiNhan")
+  caLamViecs      CaLamViec[]     @relation("NhanVienCaLam")
+
+  @@map("nguoidung")
+}
+
+model San {
+  id_san     String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_quanly  String?  @db.Uuid
+  tensan     String   @db.VarChar(100)
+  loaisan    String?  @db.VarChar(50)
+  giathue    Decimal? @db.Decimal(10, 2)
+  trangthai  String?  @default("Sẵn sàng") @db.VarChar(50)
+  hinhanh    String?
+
+  quanLy  NguoiDung? @relation("SanQuanLy", fields: [id_quanly], references: [id_nguoidung])
+  datSans DatSan[]
+
+  @@map("san")
+}
+
+model ThanhVienClb {
+  id_thanhvien  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nguoidung  String    @unique @db.Uuid
+  capbac        String?   @db.VarChar(50)
+  ngaythamgia   DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  ngayhethan    DateTime? @db.Date
+  phihoivien    Decimal?  @db.Decimal(10, 2)
+  trangthai     String?   @db.VarChar(50)
+  phuongthucthanhtoan String? @db.VarChar(50)
+  diemtichluy   Int?      @default(0)
+
+  nguoiDung    NguoiDung      @relation(fields: [id_nguoidung], references: [id_nguoidung])
+  lichTapLuys  LichTapLuyen[]
+
+  @@map("thanhvienclb")
+}
+
+model DatSan {
+  id_datsan     String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nguoidung  String?   @db.Uuid
+  id_san        String?   @db.Uuid
+  ngaydat       DateTime  @db.Date
+  giobatdau     DateTime  @db.Time(6)
+  gioketthuc    DateTime  @db.Time(6)
+  trangthai     String?   @default("Chờ xác nhận") @db.VarChar(50)
+  ghichu        String?
+
+  nguoiDung NguoiDung? @relation(fields: [id_nguoidung], references: [id_nguoidung])
+  san       San?       @relation(fields: [id_san], references: [id_san])
+  hoaDon    HoaDon?
+
+  @@map("datsan")
+}
+
+model HoaDon {
+  id_hoadon       String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_datsan       String    @unique @db.Uuid
+  sotien          Decimal   @db.Decimal(12, 2)
+  phuongthuc      String?   @db.VarChar(50)
+  trangthai       String?   @db.VarChar(50)
+  ngaythanhtoan   DateTime? @default(now()) @db.Timestamp(6)
+
+  datSan DatSan @relation(fields: [id_datsan], references: [id_datsan])
+
+  @@map("hoadon")
+}
+
+model LichTapLuyen {
+  id_lichtapluyen String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_hlv          String?   @db.Uuid
+  id_thanhvien    String?   @db.Uuid
+  ngaytap         DateTime? @db.Date
+  ngayketthuc     DateTime? @db.Date
+  giobatdau       DateTime? @db.Time(6)
+  gioketthuc      DateTime? @db.Time(6)
+  ketqua          String?
+  ghichu          String?
+  lephi           Decimal?  @db.Decimal(10, 2)
+  trangthai       String?   @db.VarChar(50) @default("Chờ xếp lịch")
+
+  hlv        NguoiDung?     @relation("HlvLichTap", fields: [id_hlv], references: [id_nguoidung])
+  thanhVien  ThanhVienClb?  @relation(fields: [id_thanhvien], references: [id_thanhvien])
+
+  @@map("lichtapluyen")
+}
+
+model GiaiDau {
+  id_giaidau      String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nguoitochuc  String?   @db.Uuid
+  tengiai         String    @db.VarChar(200)
+  ngaybatdau      DateTime? @db.Date
+  ngayketthuc     DateTime? @db.Date
+  thele           String?
+  lephi           Decimal?  @db.Decimal(10, 2)
+  trangthai       String?   @db.VarChar(50)
+  soluongtoida    Int?      @default(32)
+  hinhthuc        String?   @db.VarChar(50) @default("KnockOut")
+  sovaodauknockout Int?     @default(4)
+
+  nguoiToChuc NguoiDung?  @relation("GiaiDauToChuc", fields: [id_nguoitochuc], references: [id_nguoidung])
+  dangKys     DkGiaiDau[]
+  ketQuas     KetQuaTd[]
+
+  @@map("giaidau")
+}
+
+model DkGiaiDau {
+  id_dkgiai    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_giaidau   String?   @db.Uuid
+  id_vadv      String?   @db.Uuid
+  hangmuc      String?   @db.VarChar(100)
+  ngaydangky   DateTime? @default(dbgenerated("CURRENT_DATE")) @db.Date
+  trangthai    String?   @db.VarChar(50)
+
+  giaiDau  GiaiDau?   @relation(fields: [id_giaidau], references: [id_giaidau])
+  vanDongVien NguoiDung? @relation(fields: [id_vadv], references: [id_nguoidung])
+  ketQua1  KetQuaTd[] @relation("VanDongVien1")
+  ketQua2  KetQuaTd[] @relation("VanDongVien2")
+  ketThang KetQuaTd[] @relation("NguoiThang")
+
+  @@map("dkgiaidau")
+}
+
+model KetQuaTd {
+  id_ketquatd  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_giaidau   String?   @db.Uuid
+  id_vadv1     String?   @db.Uuid
+  id_vadv2     String?   @db.Uuid
+  id_thang     String?   @db.Uuid
+  diemso       String?   @db.VarChar(50)
+  vong         String?   @db.VarChar(50)
+  ngaythi      DateTime? @db.Timestamp(6)
+
+  giaiDau GiaiDau?   @relation(fields: [id_giaidau], references: [id_giaidau])
+  vanDongVien1 DkGiaiDau? @relation("VanDongVien1", fields: [id_vadv1], references: [id_dkgiai])
+  vanDongVien2 DkGiaiDau? @relation("VanDongVien2", fields: [id_vadv2], references: [id_dkgiai])
+  nguoiThang   DkGiaiDau? @relation("NguoiThang", fields: [id_thang], references: [id_dkgiai])
+
+  @@map("ketquatd")
+}
+
+model ThongKe {
+  id_baocao    String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nguoitao  String?   @db.Uuid
+  loai         String?   @db.VarChar(50)
+  tungay       DateTime? @db.Date
+  denngay      DateTime? @db.Date
+  noidung      String?
+  ngaytao      DateTime? @default(now()) @db.Timestamp(6)
+
+  nguoiTao NguoiDung? @relation(fields: [id_nguoitao], references: [id_nguoidung])
+
+  @@map("thongke")
+}
+
+model ThongBao {
+  id_thongbao  String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nguoidung String?     @db.Uuid
+  tieude       String      @db.VarChar(255)
+  noidung      String
+  loai         String      @db.VarChar(50)
+  id_lienket   String?     @db.Uuid
+  link         String?     @db.VarChar(255)
+  dadoct       Boolean     @default(false)
+  ngaytao      DateTime    @default(now()) @db.Timestamp(6)
+
+  nguoiDung    NguoiDung?  @relation(fields: [id_nguoidung], references: [id_nguoidung])
+
+  @@map("thongbao")
+}
+
+model TinNhan {
+  id_tinnhan   String   @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nguoigui  String   @db.Uuid
+  id_nguoinhan String   @db.Uuid
+  noidung      String
+  dadoct       Boolean  @default(false)
+  ngaytao      DateTime @default(now()) @db.Timestamp(6)
+
+  nguoiGui     NguoiDung @relation("TinNhanNguoiGui", fields: [id_nguoigui], references: [id_nguoidung])
+  nguoiNhan    NguoiDung @relation("TinNhanNguoiNhan", fields: [id_nguoinhan], references: [id_nguoidung])
+
+  @@index([id_nguoigui, id_nguoinhan, ngaytao])
+  @@index([id_nguoinhan, dadoct])
+  @@map("tinnhan")
+}
+
+model DichVu {
+  id_dichvu  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tendichvu  String    @db.VarChar(100)
+  danhmuc    String?   @db.VarChar(50)
+  danhmuccon String?   @db.VarChar(80)
+  mota       String?
+  hinhanh    String?
+  gia        Decimal?  @db.Decimal(10, 2)
+  giathue    Decimal?  @db.Decimal(10, 2)
+  soluong    Int?      @default(0)
+  trangthai  String?   @default("ConHang") @db.VarChar(50)
+  ngaytao    DateTime? @default(now()) @db.Timestamp(6)
+
+  donThues   DonThue[]
+
+  @@map("dichvu")
+}
+
+model DonThue {
+  id_donthue   String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nguoidung String?   @db.Uuid
+  id_dichvu    String?   @db.Uuid
+  soluong      Int?      @default(1)
+  sogio        Decimal?  @db.Decimal(5, 2)
+  tongtien     Decimal?  @db.Decimal(12, 2)
+  ghichu       String?
+  trangthai    String?   @default("DangThue") @db.VarChar(50)
+  ngaytao      DateTime? @default(now()) @db.Timestamp(6)
+
+  nguoiDung NguoiDung? @relation(fields: [id_nguoidung], references: [id_nguoidung])
+  dichVu    DichVu?    @relation(fields: [id_dichvu], references: [id_dichvu])
+
+  @@map("donthue")
+}
+
+model KhuyenMai {
+  id_khuyenmai  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  makhuyenmai   String    @unique @db.VarChar(50)
+  tenkhuyenmai  String    @db.VarChar(150)
+  phantramgiam  Decimal?  @db.Decimal(5, 2)
+  giamtoida     Decimal?  @db.Decimal(12, 2)
+  ngaybatdau    DateTime? @db.Timestamp(6)
+  ngayketthuc   DateTime? @db.Timestamp(6)
+  soluong       Int?      @default(0)
+  trangthai     String?   @default("Đang diễn ra") @db.VarChar(50)
+
+  @@map("khuyenmai")
+}
+
+
+model GoiHoiVien {
+  id_goi        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  tengoi        String    @db.VarChar(100)
+  thoihan       Int?      // Số tháng
+  giatien       Decimal?  @db.Decimal(12, 2)
+  mota          String?
+  trangthai     String?   @default("Đang bán") @db.VarChar(50)
+
+  @@map("goihoivien")
+}
+
+model CaLamViec {
+  id_calamviec  String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  id_nhanvien   String?   @db.Uuid
+  ngaylamviec   DateTime? @db.Date
+  cathi         String?   @db.VarChar(50) // Ca Sáng, Ca Chiều
+  trangthai     String?   @default("Chờ chấm công") @db.VarChar(50)
+
+  nhanVien NguoiDung? @relation("NhanVienCaLam", fields: [id_nhanvien], references: [id_nguoidung])
+
+  @@map("calamviec")
+}

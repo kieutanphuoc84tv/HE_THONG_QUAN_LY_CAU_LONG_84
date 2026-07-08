@@ -1,0 +1,11 @@
+{
+	"scripts": {
+		"dev": "node start-dev.js",
+		"backend:dev": "npm --prefix backend run dev",
+		"frontend:dev": "npm --prefix frontend run dev"
+	},
+	"dependencies": {
+		"gsap": "3.15.0",
+		"motion": "^12.40.0"
+	}
+}

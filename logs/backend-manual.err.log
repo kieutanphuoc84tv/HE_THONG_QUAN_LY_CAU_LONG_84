@@ -1,0 +1,178 @@
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42883`. Message: `ERROR: operator does not exist: uuid = text
+HINT: No operator matches the given name and argument types. You might need to add explicit type casts.`
+    at $n.handleRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async exports.deleteService (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\src\controllers\serviceController.js:135:18) {
+  code: 'P2010',
+  clientVersion: '5.22.0',
+  meta: {
+    code: '42883',
+    message: 'ERROR: operator does not exist: uuid = text\n' +
+      'HINT: No operator matches the given name and argument types. You might need to add explicit type casts.'
+  }
+}
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "ngaytao" does not exist`
+    at $n.handleRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async exports.getAllServices (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\src\controllers\serviceController.js:36:18) {
+  code: 'P2010',
+  clientVersion: '5.22.0',
+  meta: { code: '42703', message: 'column "ngaytao" does not exist' }
+}
+PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "ngaytao" does not exist`
+    at $n.handleRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async exports.getAllServices (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\src\controllers\serviceController.js:36:18) {
+  code: 'P2010',
+  clientVersion: '5.22.0',
+  meta: { code: '42703', message: 'column "ngaytao" does not exist' }
+}
+PrismaClientKnownRequestError: 
+Invalid `prisma.$queryRawUnsafe()` invocation:
+
+
+Raw query failed. Code: `42703`. Message: `column "ngaytao" does not exist`
+    at $n.handleRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:7315)
+    at $n.handleAndLogRequestError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6623)
+    at $n.request (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:121:6307)
+    at async l (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\@prisma+client@5.22.0_prisma@5.22.0\node_modules\@prisma\client\runtime\library.js:130:9633)
+    at async exports.getAllServices (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\src\controllers\serviceController.js:36:18) {
+  code: 'P2010',
+  clientVersion: '5.22.0',
+  meta: { code: '42703', message: 'column "ngaytao" does not exist' }
+}
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1948:16)
+    at listenInCluster (node:net:2005:12)
+    at Server.listen (node:net:2110:7)
+    at D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\index.js:130:12
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1984:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v24.14.0
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1948:16)
+    at listenInCluster (node:net:2005:12)
+    at Server.listen (node:net:2110:7)
+    at D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\index.js:130:12
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1984:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v24.14.0
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1948:16)
+    at listenInCluster (node:net:2005:12)
+    at Server.listen (node:net:2110:7)
+    at D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\index.js:130:12
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1984:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v24.14.0
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1948:16)
+    at listenInCluster (node:net:2005:12)
+    at Server.listen (node:net:2110:7)
+    at D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\index.js:130:12
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1984:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v24.14.0
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+node:events:486
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::5000
+    at Server.setupListenHandle [as _listen2] (node:net:1948:16)
+    at listenInCluster (node:net:2005:12)
+    at Server.listen (node:net:2110:7)
+    at D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\index.js:130:12
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1984:8)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 5000
+}
+
+Node.js v24.14.0
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.

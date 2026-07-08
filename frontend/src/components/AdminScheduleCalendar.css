@@ -1,0 +1,327 @@
+/* ═══════════════════════════════════════════════ */
+/*  CUSTOM CALENDAR - Lịch dạy dạng ô vuông lớn  */
+/* ═══════════════════════════════════════════════ */
+
+.custom-cal {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+  border: 1px solid #e2e8f0;
+}
+
+/* ── Header ── */
+.custom-cal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.custom-cal__nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.custom-cal__nav-btn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px;
+  border: 1.5px solid #e2e8f0;
+  background: #fff;
+  color: #475569;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.custom-cal__nav-btn:hover {
+  background: #f8fafc;
+  border-color: #10b981;
+  color: #10b981;
+}
+
+.custom-cal__title {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 900;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-cal__today-btn {
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: 1.5px solid #10b981;
+  background: #ecfdf5;
+  color: #059669;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: 'Be Vietnam Pro', sans-serif;
+  transition: all 0.2s;
+}
+.custom-cal__today-btn:hover {
+  background: #10b981;
+  color: #fff;
+}
+
+/* ── Weekday Row ── */
+.custom-cal__weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.custom-cal__weekday {
+  padding: 10px 0;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Grid ── */
+.custom-cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.custom-cal__cell {
+  min-height: 110px;
+  padding: 8px;
+  border-right: 1px solid #f1f5f9;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  transition: background 0.15s;
+  position: relative;
+}
+.custom-cal__cell:nth-child(7n) {
+  border-right: none;
+}
+.custom-cal__cell:hover {
+  background: #f8fafc;
+}
+.custom-cal__cell--dim {
+  background: #fafafa;
+  opacity: 0.45;
+}
+.custom-cal__cell--today {
+  background: #ecfdf5;
+}
+.custom-cal__cell--selected {
+  background: #eff6ff !important;
+  box-shadow: inset 0 0 0 2px #3b82f6;
+}
+.custom-cal__cell--has-events {
+  cursor: pointer;
+}
+
+/* ── Số ngày ── */
+.custom-cal__date-num {
+  font-size: 13px;
+  font-weight: 700;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.custom-cal__today-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #10b981;
+  color: #fff;
+  font-weight: 900;
+  font-size: 12px;
+}
+
+/* ── Events dots trong ô ── */
+.custom-cal__events {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.custom-cal__event-dot {
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1.2;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: transform 0.1s;
+}
+.custom-cal__event-dot:hover {
+  transform: scale(1.03);
+}
+
+.custom-cal__event-text {
+  pointer-events: none;
+}
+
+.custom-cal__more {
+  font-size: 11px;
+  font-weight: 800;
+  color: #6366f1;
+  padding: 2px 4px;
+  cursor: pointer;
+}
+
+/* ── Badge đếm số lượng góc trên phải ── */
+.custom-cal__count {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: #6366f1;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* ═══════════════════════════════ */
+/*  CHI TIẾT NGÀY ĐÃ CHỌN       */
+/* ═══════════════════════════════ */
+.custom-cal__detail {
+  border-top: 2px solid #e2e8f0;
+  padding: 20px;
+  background: #f8fafc;
+}
+
+.custom-cal__detail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.custom-cal__detail-header h3 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 900;
+  color: #0f172a;
+}
+.custom-cal__detail-count {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #6366f1;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.custom-cal__detail-empty {
+  text-align: center;
+  padding: 30px 0;
+  color: #94a3b8;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* ── Cards grid ── */
+.custom-cal__detail-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 12px;
+}
+
+.custom-cal__card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.custom-cal__card:hover {
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+}
+
+.custom-cal__card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.custom-cal__card-coach {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.custom-cal__card-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 900;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.custom-cal__card-name {
+  font-size: 14px;
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.custom-cal__card-role {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+  margin-top: 1px;
+}
+
+.custom-cal__card-status {
+  padding: 4px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 800;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.custom-cal__card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+}
+
+.custom-cal__card-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 600;
+}
+.custom-cal__card-row strong {
+  color: #0f172a;
+  font-weight: 800;
+}

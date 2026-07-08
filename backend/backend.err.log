@@ -1,0 +1,11 @@
+[Queue] Redis không khả dụng. Email sẽ được gửi trực tiếp.
+[ERROR] TokenError: Bad Request
+    at OAuth2Strategy.parseErrorResponse (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\passport-oauth2@1.8.0\node_modules\passport-oauth2\lib\strategy.js:373:12)
+    at OAuth2Strategy._createOAuthError (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\passport-oauth2@1.8.0\node_modules\passport-oauth2\lib\strategy.js:420:16)
+    at D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\passport-oauth2@1.8.0\node_modules\passport-oauth2\lib\strategy.js:177:45
+    at D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\oauth@0.10.2\node_modules\oauth\lib\oauth2.js:196:18
+    at passBackControl (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\oauth@0.10.2\node_modules\oauth\lib\oauth2.js:132:9)
+    at IncomingMessage.<anonymous> (D:\HỆ THỐNG QUẢN LÝ CẦU LÔNG 84\backend\node_modules\.pnpm\oauth@0.10.2\node_modules\oauth\lib\oauth2.js:157:7)
+    at IncomingMessage.emit (node:events:520:35)
+    at endReadableNT (node:internal/streams/readable:1701:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21)

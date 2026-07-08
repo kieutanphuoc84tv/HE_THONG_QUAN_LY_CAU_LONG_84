@@ -1,0 +1,12 @@
+
+> backend@1.0.0 start
+> node index.js
+
+◇ injected env (10) from .env // tip: ⌘ suppress logs { quiet: true }
+🏸 Server đang chạy tại http://localhost:5000
+[Cron] Khởi động Scheduled Jobs...
+User connected: RHxLrWb_MDmB-_9vAAAB
+User connected: PeHGg72Rqt0rbcyPAAAD
+User disconnected: PeHGg72Rqt0rbcyPAAAD
+User connected: OXouc4m32OdaIm8bAAAH
+User disconnected: OXouc4m32OdaIm8bAAAH

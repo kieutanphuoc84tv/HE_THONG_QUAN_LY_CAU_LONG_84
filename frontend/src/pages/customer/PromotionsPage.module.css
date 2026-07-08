@@ -1,0 +1,510 @@
+/* PromotionsPage.module.css */
+
+.hero {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #064e3b 100%);
+  padding: 80px 24px 60px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.2);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(16, 185, 129, 0.15) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+}
+
+.heroGlow {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.2) 0%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+}
+
+.heroBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #34d399;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 20px;
+  backdrop-filter: blur(8px);
+  text-transform: uppercase;
+}
+
+.heroTitle {
+  font-size: 44px;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0 0 16px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+}
+
+.heroTitleHighlight {
+  background: linear-gradient(to right, #34d399, #10b981, #6ee7b7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSub {
+  font-size: 18px;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto 36px;
+  line-height: 1.6;
+}
+
+.statsRow {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+}
+
+.statItem {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.statNum {
+  font-size: 24px;
+  font-weight: 900;
+  color: #34d399;
+}
+
+.statLabel {
+  font-size: 13px;
+  color: #cbd5e1;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* ── Container & Filter Bar ── */
+.container {
+  max-width: 1200px;
+  margin: -30px auto 60px;
+  padding: 0 24px;
+  position: relative;
+  z-index: 10;
+}
+
+.filterBar {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 20px 28px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.searchBox {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  border: 2px solid #e2e8f0;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e293b;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.searchInput:focus {
+  border-color: #10b981;
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.tabBtn {
+  padding: 10px 20px;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.tabBtn:hover {
+  background: #f1f5f9;
+  color: #1e293b;
+}
+
+.tabBtnActive {
+  background: #10b981 !important;
+  color: #ffffff !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* ── Vouchers Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
+  gap: 28px;
+}
+
+/* Ticket Style Card */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.ticketLeft {
+  width: 110px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 10px;
+  text-align: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.ticketLeftUpcoming {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.ticketLeftExpired {
+  background: linear-gradient(135deg, #64748b 0%, #475569 100%);
+}
+
+/* Perforated holes */
+.ticketLeft::after {
+  content: '';
+  position: absolute;
+  right: -8px;
+  top: 0;
+  bottom: 0;
+  width: 16px;
+  background-image: radial-gradient(circle at center, #ffffff 6px, transparent 7px);
+  background-size: 16px 20px;
+  background-position: center;
+  z-index: 2;
+}
+
+.discountPercent {
+  font-size: 26px;
+  font-weight: 900;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.discountLabel {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 0.9;
+}
+
+.discountMax {
+  font-size: 11px;
+  font-weight: 700;
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+.ticketRight {
+  flex: 1;
+  padding: 20px 22px 20px 26px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.voucherHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.voucherName {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.statusBadge {
+  font-size: 11px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+.badgeActive {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+.badgeUpcoming {
+  background: #fef3c7;
+  color: #92400e;
+}
+
+.badgeExpired {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.metaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.metaRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+.codeBox {
+  background: #f8fafc;
+  border: 2px dashed #cbd5e1;
+  border-radius: 12px;
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  transition: all 0.2s;
+}
+
+.codeBoxActive {
+  background: #ecfdf5;
+  border-color: #10b981;
+}
+
+.codeText {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 18px;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: 1px;
+}
+
+.codeTextActive {
+  color: #065f46;
+}
+
+.copyBtn {
+  background: #1e293b;
+  color: #ffffff;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copyBtn:hover {
+  background: #10b981;
+  transform: scale(1.05);
+}
+
+.cardFooter {
+  display: flex;
+  gap: 10px;
+}
+
+.useBtn {
+  flex: 1;
+  background: #10b981;
+  color: #ffffff;
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.useBtn:hover {
+  background: #059669;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.useBtnDisabled {
+  background: #e2e8f0;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* ── Guide Section ── */
+.guideSection {
+  margin-top: 70px;
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+}
+
+.guideTitle {
+  font-size: 28px;
+  font-weight: 900;
+  color: #0f172a;
+  text-align: center;
+  margin: 0 0 10px;
+}
+
+.guideSub {
+  font-size: 16px;
+  color: #64748b;
+  text-align: center;
+  margin: 0 0 40px;
+}
+
+.guideGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.stepCard {
+  background: #f8fafc;
+  padding: 28px 24px;
+  border-radius: 18px;
+  border: 1px solid #e2e8f0;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.stepCard:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  border-color: #10b981;
+  transform: translateY(-4px);
+}
+
+.stepNum {
+  width: 44px;
+  height: 44px;
+  background: #10b981;
+  color: #ffffff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 900;
+  margin-bottom: 18px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+.stepTitle {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1e293b;
+  margin: 0 0 8px;
+}
+
+.stepDesc {
+  font-size: 14px;
+  color: #64748b;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .guideGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .heroTitle {
+    font-size: 32px;
+  }
+  .filterBar {
+    padding: 16px;
+  }
+}

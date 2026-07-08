@@ -1,0 +1,686 @@
+/* ═══════════════════════════════════════════════════════════
+   Customer Dashboard – Premium Sport Theme
+   Dark navy + neon emerald, glassmorphism, GSAP-ready
+   ═══════════════════════════════════════════════════════════ */
+
+.pageWrap {
+  min-height: calc(100vh - 80px);
+  background: linear-gradient(160deg, #0a0f1e 0%, #0f172a 40%, #0c1425 100%);
+  padding: 0 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient glow effects */
+.pageWrap::before {
+  content: '';
+  position: absolute;
+  top: -200px;
+  right: -200px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.pageWrap::after {
+  content: '';
+  position: absolute;
+  bottom: -150px;
+  left: -150px;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Loading State ──────────────────────────────────────── */
+.loadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 60vh;
+  gap: 16px;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(16, 185, 129, 0.15);
+  border-top-color: #10b981;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Hero Section ───────────────────────────────────────── */
+.hero {
+  padding: 48px 24px 40px;
+  position: relative;
+}
+
+.heroContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.heroLeft {
+  flex: 1;
+  min-width: 300px;
+}
+
+.heroLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 100px;
+  color: #34d399;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 16px;
+}
+
+.heroTitle {
+  font-size: 38px;
+  font-weight: 900;
+  color: #f1f5f9;
+  margin: 0 0 10px;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+}
+
+.heroTitle span {
+  background: linear-gradient(135deg, #34d399, #10b981, #059669);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.heroSub {
+  font-size: 16px;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 450px;
+}
+
+.wave {
+  display: inline-block;
+  animation: wave 2.5s infinite;
+  transform-origin: 70% 70%;
+  margin-left: 4px;
+}
+
+@keyframes wave {
+  0% { transform: rotate(0deg) }
+  10% { transform: rotate(14deg) }
+  20% { transform: rotate(-8deg) }
+  30% { transform: rotate(14deg) }
+  40% { transform: rotate(-4deg) }
+  50% { transform: rotate(10deg) }
+  60%, 100% { transform: rotate(0deg) }
+}
+
+/* ── Stats Bar ──────────────────────────────────────────── */
+.statsBar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.statCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.statCard:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(16, 185, 129, 0.2);
+  transform: translateY(-2px);
+}
+
+.statIconWrap {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.statInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.statValue {
+  font-size: 24px;
+  font-weight: 900;
+  color: #f1f5f9;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 600;
+}
+
+/* ── Bento Grid ─────────────────────────────────────────── */
+.bentoGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .bentoGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.bentoCell {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 20px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bentoCell::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08), transparent 50%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.bentoCell:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(16, 185, 129, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Primary Cell (Booking) */
+.cellPrimary {
+  background: linear-gradient(145deg, rgba(16, 185, 129, 0.15), rgba(5, 150, 105, 0.08));
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.cellPrimary::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 70% 30%, rgba(16, 185, 129, 0.1), transparent 60%);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .cellPrimary {
+    grid-column: span 2;
+  }
+}
+
+.cellFullWidth {
+  grid-column: 1 / -1;
+  background: linear-gradient(120deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.05));
+  border-color: rgba(16, 185, 129, 0.12);
+}
+
+/* ── Cell Header ────────────────────────────────────────── */
+.cellHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
+}
+
+.cellIconWrap {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cellTitle {
+  font-size: 15px;
+  font-weight: 800;
+  color: #e2e8f0;
+  letter-spacing: -0.01em;
+}
+
+/* ── Empty State ────────────────────────────────────────── */
+.emptyStateContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  text-align: center;
+  padding: 24px 0;
+}
+
+.emptyEmoji {
+  font-size: 36px;
+  margin-bottom: 10px;
+  opacity: 0.6;
+  filter: grayscale(0.3);
+}
+
+.emptyStateContainer p {
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* ── Booking List (Primary) ─────────────────────────────── */
+.bookingList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.bookingItem {
+  display: flex;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 12px;
+  gap: 14px;
+  transition: all 0.25s ease;
+}
+
+.bookingItem:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.bookingDate {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  border-radius: 12px;
+  width: 48px;
+  height: 52px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.bookingMonth {
+  font-size: 10px;
+  font-weight: 800;
+  color: #34d399;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bookingDay {
+  font-size: 20px;
+  font-weight: 900;
+  color: #ecfdf5;
+  line-height: 1;
+}
+
+.bookingInfo h4 {
+  margin: 0 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.bookingInfo p {
+  margin: 0;
+  font-size: 12px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-weight: 500;
+}
+
+.bookingBadge {
+  margin-left: auto;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 20px;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.badgeConfirmed {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.badgePending {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+/* ── List Items (Rentals, Training) ─────────────────────── */
+.listWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 12px;
+  transition: all 0.25s ease;
+}
+
+.listItem:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+}
+
+.itemEmoji {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.itemImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  object-fit: cover;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.itemInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.itemInfo h4 {
+  margin: 0 0 2px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #e2e8f0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.itemInfo p {
+  margin: 0;
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.rentalBadge {
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 800;
+  white-space: nowrap;
+  letter-spacing: 0.02em;
+}
+
+.rentalActive {
+  background: rgba(59, 130, 246, 0.12);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.2);
+}
+
+.rentalWaiting {
+  background: rgba(251, 191, 36, 0.1);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+/* ── Cell Link Actions ──────────────────────────────────── */
+.cellLinkAction {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding: 12px 16px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  color: #94a3b8;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 13px;
+  transition: all 0.25s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.cellLinkAction:hover {
+  background: rgba(16, 185, 129, 0.1);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.2);
+  transform: translateX(4px);
+}
+
+/* ── Quick Actions Banner ───────────────────────────────── */
+.quickActionsWrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  .quickActionsWrap {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+.quickText h3 {
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #e2e8f0;
+  letter-spacing: -0.02em;
+}
+
+.quickText p {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+}
+
+.quickButtons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #fff;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: 14px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+}
+
+.actionBtn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.4);
+}
+
+.actionBtnOutline {
+  background: transparent;
+  color: #94a3b8;
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  box-shadow: none;
+}
+
+.actionBtnOutline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #e2e8f0;
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: none;
+}
+
+/* ── Floating Shuttlecock (Decoration) ──────────────────── */
+.floatingShuttle {
+  position: absolute;
+  top: 50px;
+  right: 60px;
+  font-size: 56px;
+  opacity: 0.12;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .hero {
+    padding: 32px 16px 28px;
+  }
+
+  .heroTitle {
+    font-size: 28px;
+  }
+
+  .statsBar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .statCard {
+    padding: 14px;
+  }
+
+  .statValue {
+    font-size: 20px;
+  }
+
+  .container {
+    padding: 0 16px;
+  }
+
+  .bentoGrid {
+    gap: 14px;
+  }
+
+  .bentoCell {
+    padding: 20px;
+  }
+
+  .floatingShuttle {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroTitle {
+    font-size: 24px;
+  }
+
+  .statsBar {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .statCard {
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .statIconWrap {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .statValue {
+    font-size: 18px;
+  }
+
+  .statLabel {
+    font-size: 11px;
+  }
+}
