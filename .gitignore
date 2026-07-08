@@ -42,6 +42,15 @@ backend/scatter_dates.js
 # PDF reports (generated)
 *.pdf
 
+# Logs directory
+logs/
+
+# Git submodule (accidental)
+kieutanphuoc84tv/
+
+# Copilot generated files
+Copilot_*
+
 # Gemini agent files
 .gemini/
 .agents/
